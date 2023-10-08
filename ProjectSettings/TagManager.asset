@@ -11,7 +11,7 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
+  - Map
   - 
   - 
   - 
@@ -44,11 +44,14 @@ TagManager:
   - name: Ground
     uniqueID: 4146037229
     locked: 0
-  - name: Indestructible
-    uniqueID: 3148648013
-    locked: 0
   - name: Destructible
     uniqueID: 2004364867
+    locked: 0
+  - name: Exploding
+    uniqueID: 589746579
+    locked: 0
+  - name: Indestructible
+    uniqueID: 3148648013
     locked: 0
   - name: Bomb
     uniqueID: 614001409

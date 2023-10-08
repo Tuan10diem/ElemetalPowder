@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class BombController : MonoBehaviour
 {
 
     public GameObject bombPrefab;
     public Explosion explosionPrefab;
+    public LayerMask layerMask;
+    public Tilemap destructibles;
+    public Exploding explodingPrefab;
+    
     public KeyCode inputKey = KeyCode.Space;
 
     private int bombAmount = 3;
@@ -62,8 +68,14 @@ public class BombController : MonoBehaviour
     private void Explode(Vector2 position, Vector2 direction, int length)
     {
         if (length <= 0) return;
-
+        
         position += direction;
+        
+        if (Physics2D.OverlapBox(position, Vector2.one / 2f, 0f, layerMask))
+        {
+            ClearDestructible(position);
+            return;
+        }
 
         Explosion explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
 
@@ -81,6 +93,18 @@ public class BombController : MonoBehaviour
         explosion.DestroyAfter(explosionDuration);
         
         Explode(position, direction, length - 1);
+    }
+
+    private void ClearDestructible(Vector2 position)
+    {
+        Vector3Int cellPos = destructibles.WorldToCell(position);
+        TileBase cell = destructibles.GetTile(cellPos);
+
+        if (cell != null)
+        {
+            Instantiate(explodingPrefab, position, Quaternion.identity);
+            destructibles.SetTile(cellPos,null);
+        }
     }
 
 }
