@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Subjects
 {
     private Rigidbody2D _rigidbody2D;
     protected float speed = 5f;
@@ -88,5 +88,11 @@ public class PlayerMovement : MonoBehaviour
         Vector2 position = _rigidbody2D.position;
 
         _rigidbody2D.MovePosition(position + direction * speed * Time.fixedDeltaTime);
+    }
+
+    public void SpeedIncrease()
+    {
+        speed++;
+        NotifyObservers(PlayerAction.SpeedIncrease);
     }
 }
