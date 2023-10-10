@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Explosion : MonoBehaviour
@@ -25,5 +26,13 @@ public class Explosion : MonoBehaviour
     {
         Destroy(gameObject, seconds);
     }
-    
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("damage");
+            other.GetComponent<PlayerStatus>().HandleHurt(1);
+        }
+    }
 }

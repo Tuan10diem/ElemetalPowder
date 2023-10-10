@@ -14,18 +14,22 @@ public class ItemPickup : MonoBehaviour
         Destroy(gameObject,destroyAfter);
     }
 
-    private void OnPickupItem(GameObject other)
+    private void OnPickupItem(PlayerStatus other)
     {
         switch (itemType)
         {
             case Item.Shield:
+                other.HandleShield(5f);
                 break;
             case Item.SpeedIncrease:
-                other.GetComponent<PlayerMovement>().SpeedIncrease();
+                other.SpeedIncrease(10f, 5f);
                 break;
             case Item.HandleBomb:
                 break;
             case Item.SuperBlastRadius:
+                break;
+            case Item.Heal:
+                other.HandleHeal(1);
                 break;
         }
         Destroy(gameObject);
@@ -35,7 +39,7 @@ public class ItemPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            OnPickupItem(other.gameObject);
+            OnPickupItem(other.gameObject.GetComponent<PlayerStatus>());
         }
     }
 }

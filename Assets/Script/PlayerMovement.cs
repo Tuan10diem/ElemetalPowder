@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : Subjects
+public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D _rigidbody2D;
-    protected float speed = 5f;
+    private float speed;
     public float pressX = 0f;
     public float pressY = 0f;
     private Vector2 direction = Vector2.down;
@@ -26,6 +26,7 @@ public class PlayerMovement : Subjects
 
     void Awake()
     {
+        speed = GetComponent<PlayerStatus>().speedInit;
         _rigidbody2D = GetComponent<Rigidbody2D>();
         activeSpriteRenderer = spriteRendererDown;
     }
@@ -90,9 +91,10 @@ public class PlayerMovement : Subjects
         _rigidbody2D.MovePosition(position + direction * speed * Time.fixedDeltaTime);
     }
 
-    public void SpeedIncrease()
+    public IEnumerator SpeedChange(float sInit, float speed, float affectTime)
     {
-        speed++;
-        NotifyObservers(PlayerAction.SpeedIncrease);
+        this.speed = speed;
+        yield return new WaitForSeconds(affectTime);
+        this.speed = sInit;
     }
 }

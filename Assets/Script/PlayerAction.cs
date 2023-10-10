@@ -4,5 +4,6 @@ public enum PlayerAction
     BlastRadius,
     Shield,
     SpeedIncrease,
+    Heal,
     Hurt
 }

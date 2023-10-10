@@ -17,7 +17,8 @@ public class PlayerNarrationSystem : MonoBehaviour, IObserver
             { PlayerAction.SpeedIncrease, HandleSpeedIncrease },
             { PlayerAction.Shield, HandleShield },
             { PlayerAction.BlastRadius, HandleBlastRadius },
-            { PlayerAction.HandleBomb, HandleHandleBomb }
+            { PlayerAction.HandleBomb, HandleHandleBomb },
+            { PlayerAction.Heal, HandleHeal}
         };
     }
 
@@ -52,6 +53,11 @@ public class PlayerNarrationSystem : MonoBehaviour, IObserver
     private void HandleBlastRadius()
     {
         Debug.Log("Powpow powpow");
+    }
+
+    private void HandleHeal()
+    {
+        Debug.Log("Jett heal me");
     }
 
     private void OnEnable()
