@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -19,8 +20,13 @@ public class BombController : MonoBehaviour
     public int bombRemaining = 3;
     public float bombFuseTime = 3f;
     
-    public int explosionRadius = 3;
+    public int explosionRadius;
     public float explosionDuration = 1f;
+
+    private void Awake()
+    {
+        explosionRadius = GetComponent<PlayerStatus>().explosionRadiusReal;
+    }
 
     // Update is called once per frame
     void Update()
@@ -28,6 +34,7 @@ public class BombController : MonoBehaviour
         if (bombRemaining!=0 && Input.GetKeyDown(inputKey))
         {
             StartCoroutine(PlaceBomb());
+            GetComponent<PlayerStatus>().PlaceBomb();
         }
     }
 
@@ -107,4 +114,11 @@ public class BombController : MonoBehaviour
         }
     }
 
+    public IEnumerator BlastRadius(int expRadius, int expRadiusAfterBuff, float affectTime)
+    {
+        this.explosionRadius = expRadiusAfterBuff;
+        yield return new WaitForSeconds(affectTime);
+        this.explosionRadius = expRadius;
+    }
+    
 }

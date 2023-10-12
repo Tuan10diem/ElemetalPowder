@@ -5,28 +5,19 @@ using UnityEngine;
 public class PlayerStatus : Subjects
 {
 
+    public float affectTimeOfItem = 5f;
+    
     public float speedInit = 5f;
     public float speedRealTime;
     public int HP = 5;
     public int maxHP = 5;
     public bool shield = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int explosionRadiusReal = 3;
     
-    public void SpeedIncrease(float moreSpeed, float affectTime)
+    public void SpeedIncrease(float moreSpeed)
     {
         speedRealTime = speedInit+moreSpeed;
-        StartCoroutine(this.GetComponent<PlayerMovement>().SpeedChange(speedInit, speedRealTime, affectTime));
+        StartCoroutine(this.GetComponent<PlayerMovement>().SpeedChange(speedInit, speedRealTime, affectTimeOfItem));
         NotifyObservers(PlayerAction.SpeedIncrease);
     }
 
@@ -49,17 +40,28 @@ public class PlayerStatus : Subjects
         NotifyObservers(PlayerAction.Heal);
     }
 
-    public void HandleShield(float affectTime)
+    public void HandleShield()
     {
         NotifyObservers(PlayerAction.Shield);
-        StartCoroutine(Shield(affectTime));
+        StartCoroutine(Shield(affectTimeOfItem));
     }
 
     public IEnumerator Shield(float affectTime)
     {
         shield = true;
-        
         yield return new WaitForSeconds(affectTime);
         shield=false;
+    }
+
+    public void HandleBlastRadius(int More)
+    {
+        int expRadiusAfterBuff = explosionRadiusReal + More;
+        StartCoroutine(GetComponent<BombController>().BlastRadius(explosionRadiusReal,expRadiusAfterBuff,affectTimeOfItem));
+        NotifyObservers(PlayerAction.BlastRadius);
+    }
+
+    public void PlaceBomb()
+    {
+        NotifyObservers(PlayerAction.PlaceBomb);
     }
 }

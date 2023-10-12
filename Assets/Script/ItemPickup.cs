@@ -7,7 +7,7 @@ public class ItemPickup : MonoBehaviour
 {
     public Item itemType;
     public float destroyAfter = 10f;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,14 +19,15 @@ public class ItemPickup : MonoBehaviour
         switch (itemType)
         {
             case Item.Shield:
-                other.HandleShield(5f);
+                other.HandleShield();
                 break;
             case Item.SpeedIncrease:
-                other.SpeedIncrease(10f, 5f);
+                other.SpeedIncrease(10f);
                 break;
             case Item.HandleBomb:
                 break;
             case Item.SuperBlastRadius:
+                other.HandleBlastRadius(2);
                 break;
             case Item.Heal:
                 other.HandleHeal(1);

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerNarrationSystem : MonoBehaviour, IObserver
+public class SoundNarrationSystem : MonoBehaviour, IObserver
 {
     public Subjects _playerSubject;
 
@@ -18,7 +18,8 @@ public class PlayerNarrationSystem : MonoBehaviour, IObserver
             { PlayerAction.Shield, HandleShield },
             { PlayerAction.BlastRadius, HandleBlastRadius },
             { PlayerAction.HandleBomb, HandleHandleBomb },
-            { PlayerAction.Heal, HandleHeal}
+            { PlayerAction.Heal, HandleHeal},
+            { PlayerAction.PlaceBomb, PlaceBomb }
         };
     }
 
@@ -30,6 +31,12 @@ public class PlayerNarrationSystem : MonoBehaviour, IObserver
         }
     }
 
+    private void PlaceBomb()
+    {
+        Debug.Log("May chettttt");
+    }
+
+   
     private void HandleHurt()
     {
         Debug.Log("I'm so fucking tired bro");

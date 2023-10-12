@@ -5,5 +5,6 @@ public enum PlayerAction
     Shield,
     SpeedIncrease,
     Heal,
-    Hurt
+    Hurt,
+    PlaceBomb
 }
