@@ -34,5 +34,11 @@ public class Explosion : MonoBehaviour
             Debug.Log("damage");
             other.GetComponent<PlayerStatus>().HandleHurt(1);
         }
+
+        if (other.CompareTag("Enemy"))
+        {
+            Debug.Log("damage");
+            other.GetComponent<EnemyStatus>().HandleHurt(1);
+        }
     }
 }

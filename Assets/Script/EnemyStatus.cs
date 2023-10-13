@@ -2,8 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AffectPlayer : MonoBehaviour
+public class EnemyStatus : MonoBehaviour
 {
+
+    public int HP = 2;
+    public float speed=7f;
+    public float damage = 1f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +20,9 @@ public class AffectPlayer : MonoBehaviour
     {
         
     }
-    
-    
+
+    public void HandleHurt(int dam)
+    {
+        HP -= dam;
+    }
 }

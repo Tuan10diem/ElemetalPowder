@@ -113,6 +113,13 @@ public class BombController : MonoBehaviour
             destructibles.SetTile(cellPos,null);
         }
     }
+    
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Bomb")) {
+            other.isTrigger = false;
+        }
+    }
 
     public IEnumerator BlastRadius(int expRadius, int expRadiusAfterBuff, float affectTime)
     {
