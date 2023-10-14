@@ -34,12 +34,12 @@ public class BombController : MonoBehaviour
         if (bombRemaining!=0 && Input.GetKeyDown(inputKey))
         {
             StartCoroutine(PlaceBomb());
-            GetComponent<PlayerStatus>().PlaceBomb();
         }
     }
 
     private IEnumerator PlaceBomb()
     {
+        GetComponent<PlayerStatus>().PlaceBomb();
         Vector2 pos = this.transform.position;
         pos.x = Mathf.Round(pos.x);
         pos.y = Mathf.Round(pos.y);

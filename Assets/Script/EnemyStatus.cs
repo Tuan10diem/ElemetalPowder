@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStatus : MonoBehaviour
+public class EnemyStatus : Subjects
 {
 
-    public int HP = 2;
-    public float speed=7f;
-    public float damage = 1f;
+    public int HP;
+    public float speedInit;
+    public int damage;
+    public float attackSpeed;
     
     // Start is called before the first frame update
     void Start()
@@ -25,4 +26,5 @@ public class EnemyStatus : MonoBehaviour
     {
         HP -= dam;
     }
+    
 }

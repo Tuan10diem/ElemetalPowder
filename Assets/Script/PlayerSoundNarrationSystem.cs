@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundNarrationSystem : MonoBehaviour, IObserver
+public class PlayerSoundNarrationSystem : MonoBehaviour, IObserver
 {
     public Subjects _playerSubject;
 
