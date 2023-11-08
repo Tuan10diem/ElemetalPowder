@@ -30,6 +30,11 @@ public class PlayerSoundNarrationSystem : MonoBehaviour, IObserver
             _playerActionHandler[action]();
         }
     }
+    
+    public void OnNotify(BossAction action)
+    {
+        
+    }
 
     private void PlaceBomb()
     {

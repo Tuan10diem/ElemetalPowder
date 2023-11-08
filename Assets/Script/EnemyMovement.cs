@@ -57,15 +57,22 @@ public class EnemyMovement : MonoBehaviour
         Vector2 pos = this.transform.position;
         pos.x = Mathf.Round(pos.x);
         pos.y = Mathf.Round(pos.y);
-        if (Physics2D.Raycast(transform.position, direction, maxDistanceRaycast, ~(1 << 7)).collider != null)
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, maxDistanceRaycast);
+        
+        if (Vector2.Distance(this.transform.position, pos) <= 0.1f)
         {
             return true;
         }
-        // Debug.Log(pos);
-        // Debug.Log(Vector2.Distance(this.transform.position, pos));
-
-        if (Vector2.Distance(this.transform.position, pos) <= 0.1f)
+        
+        if (hit.collider != null)
         {
+            Debug.Log(hit.collider.name);
+
+            if (hit.collider.name == "Attacking" || hit.collider.name == "Enemy")
+            {
+                timer += timePerUpdateDirection;
+            }
+            
             return true;
         }
 
@@ -100,8 +107,6 @@ public class EnemyMovement : MonoBehaviour
             
             if (Physics2D.Raycast(transform.position, direction, maxDistanceRaycast, layerMask).collider == null)
             {
-                fordable.Add(direction);
-                fordable.Add(direction);
                 fordable.Add(direction);
                 fordable.Add(direction);
                 fordable.Add(direction);

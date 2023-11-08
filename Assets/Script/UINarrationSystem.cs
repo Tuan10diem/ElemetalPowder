@@ -31,6 +31,10 @@ public class UINarrationSystem : MonoBehaviour, IObserver
             _playerActionHandler[action]();
         }
     }
+    
+    public void OnNotify(BossAction action)
+    {
+    }
 
     private void HandleHurt()
     {

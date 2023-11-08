@@ -16,7 +16,7 @@ public class BombController : MonoBehaviour
     
     public KeyCode inputKey = KeyCode.Space;
 
-    private int bombAmount = 3;
+    public int bombAmount = 3;
     public int bombRemaining = 3;
     public float bombFuseTime = 3f;
     
@@ -57,7 +57,7 @@ public class BombController : MonoBehaviour
         
     }
 
-    private void SetupExplode(Vector2 position)
+    public void SetupExplode(Vector2 position)
     {
         position.x = Mathf.Round(position.x);
         position.y = Mathf.Round(position.y);

@@ -23,4 +23,12 @@ public abstract class Subjects : MonoBehaviour
             _observers.OnNotify(action);
         });
     }
+    
+    protected void NotifyObservers(BossAction action)
+    {
+        _observers.ForEach((_observers) =>
+        {
+            _observers.OnNotify(action);
+        });
+    }
 }

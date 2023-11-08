@@ -77,12 +77,6 @@ public class PlayerMovement : MonoBehaviour
         activeSpriteRenderer = spriteRenderer;
         activeSpriteRenderer.idle = direction == Vector2.zero;
     }
-    
-    void GetInput2D()
-    {
-        pressX = Input.GetAxis("Horizontal");
-        pressY = Input.GetAxis("Vertical");
-    }
 
     void UpdatePosition()
     {
