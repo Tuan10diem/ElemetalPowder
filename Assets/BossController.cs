@@ -3,39 +3,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BossController : Subjects
+public class BossController : Subjects
 {
     public float restTime;
-    public List<KeyValuePair<BossAction,System.Action>> bossStatus;
     public int currentAction = -1;
-
-    private void Awake()
+    public List<float> skillTime;
+    public List<bool> isCasting;
+    public List<GameObject> skillList;
+    public float timer = 0;
+    
+    void Start()
     {
-        bossStatus.Add(new KeyValuePair<BossAction,System.Action>(BossAction.Skill1, Skill1));
-        bossStatus.Add(new KeyValuePair<BossAction,System.Action>(BossAction.Skill2, Skill2));
-        bossStatus.Add(new KeyValuePair<BossAction,System.Action>(BossAction.Skill3, Skill3));
+        NextAction();
+    }
+    
+    void Update()
+    {
+        timer+=Time.deltaTime;
+        Skill();
     }
     
     protected void NextAction()
     {
-        StartCoroutine(Rest(restTime));
         currentAction += 1;
-        if (currentAction >= bossStatus.Count)
+        if (currentAction >= skillTime.Count)
         {
             currentAction = 0;
         }
-        bossStatus[currentAction].Value();
+        StartCoroutine(Rest(restTime));
     }
 
-    public abstract void Skill1();
-
-    public abstract void Skill2();
-
-    public abstract void Skill3();
-
+    public void Skill()
+    {
+        if (isCasting[currentAction] && timer<skillTime[currentAction])
+        {
+            skillList[currentAction].SetActive(true);
+            NotifyObservers(BossAction.Skill1);
+        }
+        else
+        {
+            isCasting[currentAction] = false;
+            skillList[currentAction].SetActive(false);
+            timer = 0;
+            NextAction();
+        }
+    }
+    
     private IEnumerator Rest(float restTime)
     {
         yield return new WaitForSeconds(restTime);
+        timer = 0;
+        isCasting[currentAction] = true;
     }
     
 }

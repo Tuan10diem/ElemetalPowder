@@ -8,7 +8,11 @@ public class BulletController : MonoBehaviour
 
     public float speed;
     public int damage;
-    
+
+    private void Start()
+    {
+        Destroy(gameObject,10f);
+    }
 
     // Update is called once per frame
     void Update()
@@ -28,5 +32,6 @@ public class BulletController : MonoBehaviour
         {
             other.GetComponent<PlayerStatus>().HandleHurt(damage);
         }
+        Destroy(gameObject);
     }
 }
