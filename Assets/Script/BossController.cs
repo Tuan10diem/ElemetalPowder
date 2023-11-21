@@ -38,7 +38,7 @@ public class BossController : Subjects
         if (isCasting[currentAction] && timer<skillTime[currentAction])
         {
             skillList[currentAction].SetActive(true);
-            NotifyObservers(BossAction.Skill1);
+            //NotifyObservers(BossAction.Skill1);
         }
         else
         {
