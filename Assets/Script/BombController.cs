@@ -17,8 +17,8 @@ public class BombController : MonoBehaviour
     
     public KeyCode inputKey = KeyCode.Space;
 
-    public int bombAmount = 3;
-    public int bombRemaining = 3;
+    public int bombAmount;
+    public int bombRemaining;
     public float bombFuseTime = 3f;
     
     public int explosionRadius;
@@ -26,8 +26,9 @@ public class BombController : MonoBehaviour
 
     private void Awake()
     {
-        playerStatus = GetComponent<PlayerStatus>();
         explosionRadius = playerStatus.explosionRadiusReal;
+        bombAmount = playerStatus.GetComponent<PlayerStatus>().bombAmount;
+        bombRemaining = bombAmount;
     }
 
     // Update is called once per frame
@@ -51,7 +52,8 @@ public class BombController : MonoBehaviour
 
         yield return new WaitForSeconds(bombFuseTime);
         Destroy(bomb);
-        bombRemaining= Mathf.Min(bombRemaining+1, bombAmount);
+        GetComponent<PlayerStatus>().PlusBomb();
+        bombRemaining = Mathf.Min(bombRemaining+1, bombAmount);
 
         SetupExplode(bomb.transform.position);
         

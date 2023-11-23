@@ -56,12 +56,15 @@ TagManager:
   - name: Exploding
     uniqueID: 589746579
     locked: 0
-  - name: Indestructible
-    uniqueID: 3148648013
-    locked: 0
   - name: Player
     uniqueID: 2317897263
     locked: 0
+  - name: Indestructible
+    uniqueID: 3148648013
+    locked: 0
   - name: test
     uniqueID: 2042154509
+    locked: 0
+  - name: UI
+    uniqueID: 127284097
     locked: 0

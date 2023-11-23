@@ -14,15 +14,28 @@ public class PlayerStatus : Subjects
     public int maxHP = 5;
     public bool shield = false;
     public int explosionRadiusReal = 3;
+    public int bombAmount = 3;
 
     public GameObject spinningAxe;
+    public GameObject axeIcon;
     public GameObject excalibur;
+    public GameObject excaliburIcon;
+    public GameObject speedIncreaseIcon;
+    public GameObject shieldIcon;
     
     public void SpeedIncrease(float moreSpeed)
     {
         speedRealTime = speedInit+moreSpeed;
         StartCoroutine(this.GetComponent<PlayerMovement>().SpeedChange(speedInit, speedRealTime, affectTimeOfItem));
-        NotifyObservers(PlayerAction.SpeedIncrease);
+        StartCoroutine(SpeedIcon());
+        NotifyObservers(PlayerAction.SpeedIncrease,0);
+    }
+
+    private IEnumerator SpeedIcon()
+    {
+        speedIncreaseIcon.SetActive(true);
+        yield return new WaitForSeconds(affectTimeOfItem);
+        speedIncreaseIcon.SetActive(false);
     }
 
     public void HandleHurt(int damage)
@@ -34,39 +47,46 @@ public class PlayerStatus : Subjects
         else
         {
             HP -= damage;
-            NotifyObservers(PlayerAction.Hurt);
+            NotifyObservers(PlayerAction.Hurt,damage);
         }
     }
 
     public void HandleHeal(int HP)
     {
         this.HP = Mathf.Min(this.HP+HP, maxHP);
-        NotifyObservers(PlayerAction.Heal);
+        NotifyObservers(PlayerAction.Heal,HP);
     }
 
     public void HandleShield()
     {
-        NotifyObservers(PlayerAction.Shield);
+        NotifyObservers(PlayerAction.Shield,0);
         StartCoroutine(Shield(affectTimeOfItem));
     }
 
     public IEnumerator Shield(float affectTime)
     {
         shield = true;
+        shieldIcon.SetActive(true);
         yield return new WaitForSeconds(affectTime);
         shield=false;
+        shieldIcon.SetActive(false);
     }
 
     public void HandleBlastRadius(int More)
     {
         int expRadiusAfterBuff = explosionRadiusReal + More;
         StartCoroutine(GetComponent<BombController>().BlastRadius(explosionRadiusReal,expRadiusAfterBuff,affectTimeOfItem));
-        NotifyObservers(PlayerAction.BlastRadius);
+        NotifyObservers(PlayerAction.BlastRadius,More);
     }
 
     public void PlaceBomb()
     {
-        NotifyObservers(PlayerAction.PlaceBomb);
+        NotifyObservers(PlayerAction.PlaceBomb,1);
+    }
+
+    public void PlusBomb()
+    {
+        NotifyObservers(PlayerAction.PlusBomb,1);
     }
 
     public void HandleSpinningAxe()
@@ -78,20 +98,25 @@ public class PlayerStatus : Subjects
     public IEnumerator SpinningAxe()
     {
         spinningAxe.SetActive(true);
+        axeIcon.SetActive(true);
         yield return new WaitForSeconds(affectTimeOfWeapon);
         spinningAxe.SetActive(false);
+        axeIcon.SetActive(false) ;
 
     }
 
     public void HandleExcalibur()
     {
         StartCoroutine (Excalibur());
+        //NotifyObservers()
     }
 
     public IEnumerator Excalibur()
     {
         excalibur.SetActive(true);
+        excaliburIcon.SetActive(true);
         yield return new WaitForSeconds(affectTimeOfWeapon);
+        excalibur.SetActive(false);
         excalibur.SetActive(false);
     }
 

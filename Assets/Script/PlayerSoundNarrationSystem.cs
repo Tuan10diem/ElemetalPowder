@@ -23,7 +23,7 @@ public class PlayerSoundNarrationSystem : MonoBehaviour, IObserver
         };
     }
 
-    public void OnNotify(PlayerAction action)
+    public void OnNotify(PlayerAction action, float n)
     {
         if (_playerActionHandler.ContainsKey(action))
         {
@@ -31,7 +31,7 @@ public class PlayerSoundNarrationSystem : MonoBehaviour, IObserver
         }
     }
     
-    public void OnNotify(BossAction action)
+    public void OnNotify(BossAction action, float n)
     {
         
     }

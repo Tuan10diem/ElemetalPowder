@@ -6,5 +6,6 @@ public enum PlayerAction
     SpeedIncrease,
     Heal,
     Hurt,
-    PlaceBomb
+    PlaceBomb,
+    PlusBomb
 }
