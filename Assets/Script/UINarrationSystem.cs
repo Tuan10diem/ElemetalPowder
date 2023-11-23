@@ -2,9 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UINarrationSystem : MonoBehaviour, IObserver
 {
+
+    public Image healthBar;
+    public int healthAmount;
+
 
     public Subjects _playerSubject;
     

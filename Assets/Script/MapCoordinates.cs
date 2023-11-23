@@ -3,71 +3,76 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
+using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class MapCoordinates : MonoBehaviour
 {
-    public Tilemap destructibles;
-    public Tilemap undestructibles;
+    public Tilemap groundMap;
+    public Tilemap destructibleMap;
+    public Tilemap indestructibleMap;
+    public int numberOfPos;
+    public int timeBetweenTileChange;
 
-    public Vector2Int different;
+    public GameObject obstacle;
 
-    public Vector2Int mapSize;
-    
-    public List<List<int>> bitCoordinates = new List<List<int>>();
-
-    // Start is called before the first frame update
-    void Awake()
+    private void Start()
     {
+        InvokeRepeating("GenerateRandomPositions", 0f, timeBetweenTileChange); 
+    }
 
-        for (int i = 0; i < mapSize.x; i++)
+    void GenerateRandomPositions()
+    {
+        if (groundMap != null && destructibleMap != null && indestructibleMap != null)
         {
-            List<int> tmp= new List<int>();
-            for (int j = 0; j < mapSize.y; j++)
+            List<Vector3Int> destructibleBoxPositions = GetBoxPositions(destructibleMap);
+            List<Vector3Int> indestructibleBoxPositions = GetBoxPositions(indestructibleMap);
+
+            for (int i = 0; i < numberOfPos; i++)
             {
-                tmp.Add(0);
-            }
-            bitCoordinates.Add(tmp);
-        }
-        
-    }
+                BoundsInt groundBounds = groundMap.cellBounds;
 
-    private void FixedUpdate()
-    {
-        SetStatusTile(destructibles);
-        SetStatusTile(undestructibles);
-    }
+                Vector3Int randomGroundPosition = GetRandomGroundPosition(groundBounds, destructibleBoxPositions, indestructibleBoxPositions);
 
-    private void SetStatusTile(Tilemap tilemap)
-    {
-        if (tilemap == null) return;
-        
-        BoundsInt bounds = tilemap.cellBounds;
-        TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
-        
-        // Debug.Log(bounds);
-        
-        for (int x = 0; x < bounds.size.x; x++) {
-            for (int y = 0; y < bounds.size.y; y++) {
-                TileBase tile = allTiles[x + y * bounds.size.x];
-                if (tile != null)
-                {
-                    // Debug.Log(tile);
-                    // Debug.Log((x)+", "+(y));
-                    int tmpX = Set00(x, y).x;
-                    int tmpY = Set00(x, y).y;
-                    bitCoordinates[tmpX][tmpY] = 1;
-                    
-                }
+                Vector3 worldPosition = groundMap.GetCellCenterWorld(randomGroundPosition);
+
+                Instantiate(obstacle, worldPosition, Quaternion.identity);
             }
         }
     }
 
-    private Vector2Int Set00(int x, int y)
+    List<Vector3Int> GetBoxPositions(Tilemap boxMap)
     {
-        return new Vector2Int(x - different.x, y - different.y);
+        List<Vector3Int> boxPositions = new List<Vector3Int>();
+
+        foreach (Vector3Int pos in boxMap.cellBounds.allPositionsWithin)
+        {
+            if (boxMap.HasTile(pos))
+            {
+                boxPositions.Add(pos);
+            }
+        }
+
+        return boxPositions;
+    }
+
+    Vector3Int GetRandomGroundPosition(BoundsInt groundBounds, List<Vector3Int> destructibleBoxPositions, List<Vector3Int> indestructibleBoxPositions)
+    {
+        Vector3Int randomPosition;
+
+        do
+        {
+            randomPosition = new Vector3Int(
+                UnityEngine.Random.Range(groundBounds.x, groundBounds.x + groundBounds.size.x),
+                UnityEngine.Random.Range(groundBounds.y, groundBounds.y + groundBounds.size.y),
+                0
+            );
+
+        } while (destructibleBoxPositions.Contains(randomPosition) || indestructibleBoxPositions.Contains(randomPosition));
+
+        return randomPosition;
     }
 
 }

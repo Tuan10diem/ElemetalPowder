@@ -898,7 +898,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1146319283
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.00003182888, y: 0, z: 0}
@@ -1013,11 +1013,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 277817321}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c9215f8c1a24b042bdae1e6d1899bf1, type: 3}
+  m_Script: {fileID: 11500000, guid: 333a34812fa72c14a90fa9b7d8da47d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 100
-  axeDamage: 0
+  rotationSpeed: 20
+  axeDamage: 10
 --- !u!1 &326991062
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,7 +1575,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1146319283
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -3580,7 +3580,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1146319283
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.00003182888, y: 0, z: 0}
@@ -4348,7 +4348,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2004364867
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.00003182888, y: 0, z: 0}
@@ -4503,7 +4503,6 @@ GameObject:
   - component: {fileID: 489014387}
   - component: {fileID: 489014386}
   - component: {fileID: 489014388}
-  - component: {fileID: 489014389}
   - component: {fileID: 489014390}
   m_Layer: 6
   m_Name: Map1
@@ -4555,39 +4554,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 011e4b6b8403ca840b17984f1477a5bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destructibles: {fileID: 1008541125}
-  undestructibles: {fileID: 341576991}
-  different: {x: 2, y: 0}
-  mapSize: {x: 20, y: 16}
---- !u!114 &489014389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 489014385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1a7ef48ac596894789ac0d33538bf49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bombPrefab: {fileID: 665600218397792827, guid: 7741117e061a01b4ebab936c96eb8cc8, type: 3}
-  explosionPrefab: {fileID: 3283094146760072878, guid: c996d6e0347919e43ba8a16fb067cfd8, type: 3}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  destructibles: {fileID: 1008541125}
-  explodingPrefab: {fileID: 3799787995291897593, guid: adbce38a6ff1f794bb5f2e061229c44d, type: 3}
-  playerStatus: {fileID: 649393177}
-  inputKey: 32
-  bombAmount: 3
-  bombRemaining: 3
-  bombFuseTime: 3
-  explosionRadius: 0
-  explosionDuration: 1
-  timer: 0
-  timePerDrop: 7
-  mapCoordinates: {fileID: 489014388}
+  groundMap: {fileID: 1820313405}
+  destructibleMap: {fileID: 1008541125}
+  indestructibleMap: {fileID: 341576991}
+  numberOfPos: 5
+  timeBetweenTileChange: 10
+  obstacle: {fileID: 6819250525593778725, guid: cabb94f9bbc61034ea0a241a1fbc3d4f, type: 3}
 --- !u!50 &489014390
 Rigidbody2D:
   serializedVersion: 4
@@ -4782,7 +4754,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649393169}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.32, y: -7.31, z: 0}
+  m_LocalPosition: {x: 5.92, y: -1.98, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4932,7 +4904,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2004364867
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -5806,10 +5778,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 011e4b6b8403ca840b17984f1477a5bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destructibles: {fileID: 432037389}
-  undestructibles: {fileID: 12679613}
-  different: {x: 2, y: 0}
-  mapSize: {x: 20, y: 12}
+  groundMap: {fileID: 0}
+  destructibleMap: {fileID: 0}
+  indestructibleMap: {fileID: 0}
+  numberOfPos: 0
+  timeBetweenTileChange: 0
+  obstacle: {fileID: 0}
 --- !u!156049354 &1143040578
 Grid:
   m_ObjectHideFlags: 0
@@ -7961,7 +7935,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1146319283
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -9867,7 +9841,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1146319283
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: -1822363565, guid: b5a68f9ef25d304488a1fd8462f7da26, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10025,7 +9999,6 @@ GameObject:
   - component: {fileID: 1784337453}
   - component: {fileID: 1784337456}
   - component: {fileID: 1784337455}
-  - component: {fileID: 1784337454}
   m_Layer: 0
   m_Name: Axe3
   m_TagString: Untagged
@@ -10048,18 +10021,6 @@ Transform:
   m_Father: {fileID: 277817322}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 60}
---- !u!114 &1784337454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1784337452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c584789ea7c9324c87d59a494d554fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1784337455
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12863,7 +12824,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1954589877}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 548a8b8876ac4c645981aa0d71a54ef6, type: 3}
+  m_Script: {fileID: 11500000, guid: 4588868d39fefdd43bbaa4bf53dee426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bombController: {fileID: 649393176}
