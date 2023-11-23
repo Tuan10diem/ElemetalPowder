@@ -6,7 +6,8 @@ using UnityEngine;
 public class Skill1_HellBullet : MonoBehaviour
 {
     public List<GameObject> firePoint;
-    public BulletController bulletPrefab;
+    public GameObject bulletPrefab;
+    public GameObject bossController;
     public float timeBetweenShoots;
     private Subjects _subjects;
     private float timer = 0;
@@ -29,7 +30,8 @@ public class Skill1_HellBullet : MonoBehaviour
     {
         foreach (var i in firePoint)
         {
-            Instantiate(bulletPrefab, i.transform.position, i.transform.rotation);
+            GameObject bullet = Instantiate(bulletPrefab, i.transform.position, i.transform.rotation);
+            //bullet.GetComponent<BulletController>().damage = bossController.GetComponent<BossController>().dameSkill[0];
         }
     }
 

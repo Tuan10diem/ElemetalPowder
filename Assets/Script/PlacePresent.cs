@@ -37,7 +37,7 @@ public class PlacePresent : BombController
     
     private IEnumerator PlaceBomb()
     {
-        Vector2 pos = new Vector2(19, 11);
+        Vector2 pos = new Vector2(19, 16);
         // Debug.Log('x'+bitCoordinates[0].Count.ToString());
         Debug.Log(bitCoordinates.Count);
         while (bitCoordinates[(int)pos.x][(int)pos.y] == 1)
@@ -46,8 +46,10 @@ public class PlacePresent : BombController
             pos.x = Random.Range(0, bitCoordinates.Count);
         }
         
+        Debug.Log(pos);
         pos.x -= 9;
         pos.y -= 5;
+        Debug.Log(pos);
         
 
         GameObject bomb = Instantiate(bombPrefab, pos, Quaternion.identity);

@@ -4,5 +4,7 @@ public enum Item
     SuperBlastRadius,
     HandleBomb,
     Shield,
-    Heal
+    Heal,
+    SpinningAxe,
+    Excalibur
 }

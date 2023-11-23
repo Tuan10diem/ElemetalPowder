@@ -99,9 +99,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleSprite: {fileID: 0}
   animationSprites:
-  - {fileID: -1845134860, guid: 1021e0a9e2a438d4e8f038299db14cf9, type: 3}
-  - {fileID: -1776709777, guid: 1021e0a9e2a438d4e8f038299db14cf9, type: 3}
-  - {fileID: -1556157258, guid: 1021e0a9e2a438d4e8f038299db14cf9, type: 3}
+  - {fileID: 384369485, guid: b97d3f4b0b977f043af17c31ebb16c1e, type: 3}
+  - {fileID: -1870871889, guid: b97d3f4b0b977f043af17c31ebb16c1e, type: 3}
+  - {fileID: -1900535811, guid: b97d3f4b0b977f043af17c31ebb16c1e, type: 3}
+  - {fileID: -1681164165, guid: b97d3f4b0b977f043af17c31ebb16c1e, type: 3}
   animationTime: 0.15
   loop: 1
   idle: 0
@@ -204,9 +205,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleSprite: {fileID: 0}
   animationSprites:
-  - {fileID: -1845134860, guid: 1021e0a9e2a438d4e8f038299db14cf9, type: 3}
-  - {fileID: -1776709777, guid: 1021e0a9e2a438d4e8f038299db14cf9, type: 3}
-  - {fileID: -1556157258, guid: 1021e0a9e2a438d4e8f038299db14cf9, type: 3}
+  - {fileID: 384369485, guid: b97d3f4b0b977f043af17c31ebb16c1e, type: 3}
+  - {fileID: -1870871889, guid: b97d3f4b0b977f043af17c31ebb16c1e, type: 3}
+  - {fileID: -1900535811, guid: b97d3f4b0b977f043af17c31ebb16c1e, type: 3}
+  - {fileID: -1681164165, guid: b97d3f4b0b977f043af17c31ebb16c1e, type: 3}
   animationTime: 0.15
   loop: 1
   idle: 1
@@ -309,9 +311,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleSprite: {fileID: 0}
   animationSprites:
-  - {fileID: -1845134860, guid: 1021e0a9e2a438d4e8f038299db14cf9, type: 3}
-  - {fileID: -1776709777, guid: 1021e0a9e2a438d4e8f038299db14cf9, type: 3}
-  - {fileID: -1556157258, guid: 1021e0a9e2a438d4e8f038299db14cf9, type: 3}
+  - {fileID: -706707716, guid: b97d3f4b0b977f043af17c31ebb16c1e, type: 3}
+  - {fileID: -1171674589, guid: b97d3f4b0b977f043af17c31ebb16c1e, type: 3}
+  - {fileID: -1534999393, guid: b97d3f4b0b977f043af17c31ebb16c1e, type: 3}
+  - {fileID: -1835643275, guid: b97d3f4b0b977f043af17c31ebb16c1e, type: 3}
   animationTime: 0.15
   loop: 1
   idle: 0
@@ -342,7 +345,7 @@ Transform:
   m_GameObject: {fileID: 3283094146760072866}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3283094146544385267}

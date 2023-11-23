@@ -14,7 +14,7 @@ public class ItemPickup : MonoBehaviour
         Destroy(gameObject,destroyAfter);
     }
 
-    private void OnPickupItem(PlayerStatus other)
+    public void OnPickupItem(PlayerStatus other)
     {
         switch (itemType)
         {
@@ -24,13 +24,17 @@ public class ItemPickup : MonoBehaviour
             case Item.SpeedIncrease:
                 other.SpeedIncrease(10f);
                 break;
-            case Item.HandleBomb:
-                break;
             case Item.SuperBlastRadius:
                 other.HandleBlastRadius(2);
                 break;
             case Item.Heal:
                 other.HandleHeal(1);
+                break;
+            case Item.SpinningAxe:
+                other.HandleSpinningAxe();
+                break;
+            case Item.Excalibur:
+                other.HandleExcalibur();
                 break;
         }
         Destroy(gameObject);

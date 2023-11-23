@@ -27,10 +27,15 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other == null) return;
+        if (other==null) return;
+        Debug.Log(other.name);
         if (other.CompareTag("Player"))
         {
             other.GetComponent<PlayerStatus>().HandleHurt(damage);
+        }
+        if (other.CompareTag("Boss"))
+        {
+            other.GetComponent<BossController>().HandleHurt(damage);
         }
         Destroy(gameObject);
     }

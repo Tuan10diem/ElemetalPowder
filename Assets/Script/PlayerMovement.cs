@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private float speed;
     public float pressX = 0f;
     public float pressY = 0f;
-    private Vector2 direction = Vector2.down;
+    public Vector2 direction = Vector2.down;
 
     [Header("Input")] 
     public KeyCode inputUp = KeyCode.W;

@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 296886458488416915}
   - component: {fileID: 296886458488416912}
   - component: {fileID: 296886458488416926}
-  - component: {fileID: 296886458488416927}
+  - component: {fileID: 2041226180394838194}
+  - component: {fileID: 4582046092704106609}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 296886458488416924}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -49,7 +50,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.104665734
+  m_Radius: 0.5
 --- !u!114 &296886458488416926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   damage: 1
---- !u!212 &296886458488416927
+--- !u!212 &2041226180394838194
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,17 +103,38 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 614001409
-  m_SortingLayer: 5
+  m_SortingLayerID: -1977070033
+  m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1845134860, guid: 1021e0a9e2a438d4e8f038299db14cf9, type: 3}
+  m_Sprite: {fileID: 1185864967, guid: 884eaa97219b0a145bf937e0fd922841, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.24, y: 0.26}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4582046092704106609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296886458488416924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6309f8545b714b968ec36e68048bf9d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleSprite: {fileID: 0}
+  animationSprites:
+  - {fileID: 1185864967, guid: 884eaa97219b0a145bf937e0fd922841, type: 3}
+  - {fileID: -1438440077, guid: 884eaa97219b0a145bf937e0fd922841, type: 3}
+  - {fileID: -2026578896, guid: 884eaa97219b0a145bf937e0fd922841, type: 3}
+  - {fileID: 1066384384, guid: 884eaa97219b0a145bf937e0fd922841, type: 3}
+  animationTime: 0.25
+  loop: 1
+  idle: 0

@@ -13,6 +13,7 @@ public class BombController : MonoBehaviour
     public LayerMask layerMask;
     public Tilemap destructibles;
     public Exploding explodingPrefab;
+    public PlayerStatus playerStatus;
     
     public KeyCode inputKey = KeyCode.Space;
 
@@ -25,13 +26,14 @@ public class BombController : MonoBehaviour
 
     private void Awake()
     {
-        explosionRadius = GetComponent<PlayerStatus>().explosionRadiusReal;
+        playerStatus = GetComponent<PlayerStatus>();
+        explosionRadius = playerStatus.explosionRadiusReal;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (bombRemaining!=0 && Input.GetKeyDown(inputKey))
+        if (bombRemaining!=0 && playerStatus.excalibur.activeSelf==false && playerStatus.spinningAxe.activeSelf == false && Input.GetKeyDown(inputKey))
         {
             StartCoroutine(PlaceBomb());
         }

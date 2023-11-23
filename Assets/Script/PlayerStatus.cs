@@ -6,6 +6,7 @@ public class PlayerStatus : Subjects
 {
 
     public float affectTimeOfItem = 5f;
+    public float affectTimeOfWeapon = 10f;
     
     public float speedInit = 5f;
     public float speedRealTime;
@@ -13,6 +14,9 @@ public class PlayerStatus : Subjects
     public int maxHP = 5;
     public bool shield = false;
     public int explosionRadiusReal = 3;
+
+    public GameObject spinningAxe;
+    public GameObject excalibur;
     
     public void SpeedIncrease(float moreSpeed)
     {
@@ -64,4 +68,31 @@ public class PlayerStatus : Subjects
     {
         NotifyObservers(PlayerAction.PlaceBomb);
     }
+
+    public void HandleSpinningAxe()
+    {
+        StartCoroutine(SpinningAxe());
+        //NotifyObservers()
+    }
+
+    public IEnumerator SpinningAxe()
+    {
+        spinningAxe.SetActive(true);
+        yield return new WaitForSeconds(affectTimeOfWeapon);
+        spinningAxe.SetActive(false);
+
+    }
+
+    public void HandleExcalibur()
+    {
+        StartCoroutine (Excalibur());
+    }
+
+    public IEnumerator Excalibur()
+    {
+        excalibur.SetActive(true);
+        yield return new WaitForSeconds(affectTimeOfWeapon);
+        excalibur.SetActive(false);
+    }
+
 }

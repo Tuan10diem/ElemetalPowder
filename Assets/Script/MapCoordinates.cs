@@ -12,9 +12,9 @@ public class MapCoordinates : MonoBehaviour
     public Tilemap destructibles;
     public Tilemap undestructibles;
 
-    public Vector2Int different = new Vector2Int(2, 0);
+    public Vector2Int different;
 
-    public Vector2Int mapSize = new Vector2Int(21, 12);
+    public Vector2Int mapSize;
     
     public List<List<int>> bitCoordinates = new List<List<int>>();
 
