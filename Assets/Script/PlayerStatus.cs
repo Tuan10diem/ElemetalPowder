@@ -90,6 +90,7 @@ public class PlayerStatus : Subjects
         else
         {
             HP -= damage;
+            GetComponent<PlayerMovement>().Flickering();
             NotifyObservers(PlayerAction.Hurt,damage);
         }
     }
