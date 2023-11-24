@@ -59,6 +59,9 @@ TagManager:
   - name: Player
     uniqueID: 2317897263
     locked: 0
+  - name: Explosion
+    uniqueID: 1262186741
+    locked: 0
   - name: Indestructible
     uniqueID: 3148648013
     locked: 0

@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 614001409
-  m_SortingLayer: 5
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -105,7 +105,7 @@ MonoBehaviour:
   - {fileID: 1258402813, guid: 48df57af58c265340ba0e1b936e5e384, type: 3}
   animationTime: 0.25
   loop: 1
-  idle: 1
+  idle: 0
 --- !u!1 &8091821487317346951
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +221,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 614001409
-  m_SortingLayer: 5
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 354808836, guid: 48df57af58c265340ba0e1b936e5e384, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

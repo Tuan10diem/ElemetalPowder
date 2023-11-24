@@ -85,10 +85,8 @@ public class PlayerMovement : MonoBehaviour
         _rigidbody2D.MovePosition(position + direction * speed * Time.fixedDeltaTime);
     }
 
-    public IEnumerator SpeedChange(float sInit, float speed, float affectTime)
+    public void SpeedChange(float speed)
     {
         this.speed = speed;
-        yield return new WaitForSeconds(affectTime);
-        this.speed = sInit;
     }
 }

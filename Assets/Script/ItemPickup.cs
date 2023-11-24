@@ -19,22 +19,22 @@ public class ItemPickup : MonoBehaviour
         switch (itemType)
         {
             case Item.Shield:
-                other.HandleShield();
+                other.AddItemTime(1, Item.Shield);
                 break;
             case Item.SpeedIncrease:
-                other.SpeedIncrease(10f);
+                other.AddItemTime(1, Item.SpeedIncrease);
                 break;
             case Item.SuperBlastRadius:
-                other.HandleBlastRadius(2);
+                other.AddItemTime(1, Item.SuperBlastRadius);
                 break;
             case Item.Heal:
-                other.HandleHeal(1);
+                other.numberOfItem[Item.Heal]++;
                 break;
             case Item.SpinningAxe:
-                other.HandleSpinningAxe();
+                other.AddWeaponTime(1, Item.SpinningAxe);
                 break;
             case Item.Excalibur:
-                other.HandleExcalibur();
+                other.numberOfItem[Item.Excalibur]++;
                 break;
         }
         Destroy(gameObject);

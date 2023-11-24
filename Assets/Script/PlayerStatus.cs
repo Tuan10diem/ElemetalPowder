@@ -14,7 +14,13 @@ public class PlayerStatus : Subjects
     public int maxHP = 5;
     public bool shield = false;
     public int explosionRadiusReal = 3;
+    int radiusRealtime = 3;
     public int bombAmount = 3;
+    public float moreSpeed;
+    public int moreRadius;
+    
+
+    public Dictionary<Item, float> numberOfItem = new Dictionary<Item, float>();
 
     public GameObject spinningAxe;
     public GameObject axeIcon;
@@ -22,20 +28,57 @@ public class PlayerStatus : Subjects
     public GameObject excaliburIcon;
     public GameObject speedIncreaseIcon;
     public GameObject shieldIcon;
-    
-    public void SpeedIncrease(float moreSpeed)
+    public GameObject radiusBuffIcon;    
+
+    private void Awake()
     {
-        speedRealTime = speedInit+moreSpeed;
-        StartCoroutine(this.GetComponent<PlayerMovement>().SpeedChange(speedInit, speedRealTime, affectTimeOfItem));
-        StartCoroutine(SpeedIcon());
-        NotifyObservers(PlayerAction.SpeedIncrease,0);
+        numberOfItem = new Dictionary<Item, float>()
+        {
+            {Item.Excalibur,0 },
+            {Item.SpinningAxe, 0},
+            {Item.SuperBlastRadius, 0},
+            {Item.Shield, 0},
+            {Item.SpeedIncrease,0 },
+            {Item.Heal, 0}
+        };
     }
 
-    private IEnumerator SpeedIcon()
+    private void Update()
     {
-        speedIncreaseIcon.SetActive(true);
-        yield return new WaitForSeconds(affectTimeOfItem);
-        speedIncreaseIcon.SetActive(false);
+        HandleExcalibur();
+        HandleSpinningAxe();
+
+        SpeedIncrease();
+        HandleShield();
+        HandleBlastRadius();
+    }
+
+    public void AddItemTime(int time, Item item)
+    {
+        numberOfItem[item] += time * affectTimeOfItem;
+    }
+
+    public void AddWeaponTime(int time, Item item)
+    {
+        numberOfItem[item] += time * affectTimeOfWeapon;
+    }
+
+    public void SpeedIncrease()
+    {
+        if (numberOfItem[Item.SpeedIncrease] > 0)
+        {
+            numberOfItem[Item.SpeedIncrease] -= Time.deltaTime;
+            if (speedRealTime == speedInit) speedRealTime = speedInit + moreSpeed;
+            this.GetComponent<PlayerMovement>().SpeedChange(speedRealTime);
+            if(!speedIncreaseIcon.activeSelf) speedIncreaseIcon.SetActive(true);
+            //NotifyObservers(PlayerAction.SpeedIncrease, 0);
+        }
+        else
+        {
+            this.GetComponent<PlayerMovement>().SpeedChange(speedInit);
+            speedRealTime = speedInit;
+            if (speedIncreaseIcon.activeSelf) speedIncreaseIcon.SetActive(false);
+        }
     }
 
     public void HandleHurt(int damage)
@@ -59,24 +102,44 @@ public class PlayerStatus : Subjects
 
     public void HandleShield()
     {
-        NotifyObservers(PlayerAction.Shield,0);
-        StartCoroutine(Shield(affectTimeOfItem));
+        if (numberOfItem[Item.Shield] > 0)
+        {
+            numberOfItem[Item.Shield] -= Time.deltaTime;
+            shield = true;
+            if (!shieldIcon.activeSelf) shieldIcon.SetActive(true);
+        }
+        else
+        {
+            shield = false;
+            if (shieldIcon.activeSelf) shieldIcon.SetActive(false);
+        }
     }
 
-    public IEnumerator Shield(float affectTime)
+    public void HandleBlastRadius()
     {
-        shield = true;
-        shieldIcon.SetActive(true);
-        yield return new WaitForSeconds(affectTime);
-        shield=false;
-        shieldIcon.SetActive(false);
-    }
-
-    public void HandleBlastRadius(int More)
-    {
-        int expRadiusAfterBuff = explosionRadiusReal + More;
-        StartCoroutine(GetComponent<BombController>().BlastRadius(explosionRadiusReal,expRadiusAfterBuff,affectTimeOfItem));
-        NotifyObservers(PlayerAction.BlastRadius,More);
+        if (numberOfItem[Item.SuperBlastRadius] > 0)
+        {
+            numberOfItem[Item.SuperBlastRadius] -= Time.deltaTime;
+            if (radiusRealtime == explosionRadiusReal)
+            {
+                radiusRealtime = radiusRealtime + moreRadius;
+                NotifyObservers(PlayerAction.BlastRadius, moreRadius);
+                GetComponent<BombController>().RadiusChange(radiusRealtime);
+                if (!radiusBuffIcon.activeSelf)
+                {
+                    radiusBuffIcon.SetActive(true);
+                }
+            }
+        }
+        else
+        {
+            if (radiusBuffIcon.activeSelf)
+            {
+                radiusBuffIcon.SetActive(false);
+            }
+            GetComponent<BombController>().RadiusChange(explosionRadiusReal);
+            radiusRealtime = explosionRadiusReal;
+        }
     }
 
     public void PlaceBomb()
@@ -91,33 +154,31 @@ public class PlayerStatus : Subjects
 
     public void HandleSpinningAxe()
     {
-        StartCoroutine(SpinningAxe());
-        //NotifyObservers()
-    }
-
-    public IEnumerator SpinningAxe()
-    {
-        spinningAxe.SetActive(true);
-        axeIcon.SetActive(true);
-        yield return new WaitForSeconds(affectTimeOfWeapon);
-        spinningAxe.SetActive(false);
-        axeIcon.SetActive(false) ;
-
+        if (numberOfItem[Item.SpinningAxe] > 0)
+        {
+            numberOfItem[Item.SpinningAxe] -= Time.deltaTime;
+            if (!spinningAxe.activeSelf) spinningAxe.SetActive(true);
+            if(!axeIcon.activeSelf) axeIcon.SetActive(true);
+        }
+        else
+        {
+            if (spinningAxe.activeSelf) spinningAxe.SetActive(false);
+            if (axeIcon.activeSelf) axeIcon.SetActive(false);
+        }       
     }
 
     public void HandleExcalibur()
     {
-        StartCoroutine (Excalibur());
-        //NotifyObservers()
-    }
-
-    public IEnumerator Excalibur()
-    {
-        excalibur.SetActive(true);
-        excaliburIcon.SetActive(true);
-        yield return new WaitForSeconds(affectTimeOfWeapon);
-        excalibur.SetActive(false);
-        excalibur.SetActive(false);
+        if (numberOfItem[Item.Excalibur] > 0)
+        {
+            if (!excalibur.activeSelf) excalibur.SetActive(true);
+            if (!excaliburIcon.activeSelf) excaliburIcon.SetActive(true);
+        }
+        else
+        {
+            if (excalibur.activeSelf) excalibur.SetActive(false);
+            if (excaliburIcon.activeSelf) excaliburIcon.SetActive(false);
+        }
     }
 
 }

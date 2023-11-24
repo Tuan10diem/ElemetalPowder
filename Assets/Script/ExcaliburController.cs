@@ -26,6 +26,7 @@ public class ExcaliburController : MonoBehaviour
         GetInput1D();
         if(UnityEngine.Input.GetKeyDown(inputKey))
         {
+            GetComponentInParent<PlayerStatus>().numberOfItem[Item.Excalibur] -= 1 ;
             ExcaliburAttack();
         }
     }

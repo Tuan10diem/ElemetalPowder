@@ -125,11 +125,9 @@ public class BombController : MonoBehaviour
         }
     }
 
-    public IEnumerator BlastRadius(int expRadius, int expRadiusAfterBuff, float affectTime)
+    public void RadiusChange(int radiusAfterBuff)
     {
-        this.explosionRadius = expRadiusAfterBuff;
-        yield return new WaitForSeconds(affectTime);
-        this.explosionRadius = expRadius;
+        this.explosionRadius = radiusAfterBuff;
     }
     
 }
