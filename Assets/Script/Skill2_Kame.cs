@@ -28,8 +28,8 @@ public class Skill2_Kame : MonoBehaviour
         if(timer >= timeBetween2Shot) 
         {
             GameObject kame = Instantiate(finalSpark, this.transform.position, this.transform.rotation);
-            //kame.GetComponent<FinalSpark>().damage = bossController.GetComponent<BossController>().dameSkill[1];
-            //kame.transform.parent = this.transform;
+            kame.GetComponent<FinalSpark>().damage = bossController.GetComponent<BossController>().dameSkill[1];
+            kame.transform.parent = this.transform;
             timer = 0;
         }
     }

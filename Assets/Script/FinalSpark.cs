@@ -22,7 +22,7 @@ public class FinalSpark : MonoBehaviour
 
         collider2D.enabled = true;
         
-        transform.localScale = new Vector3(2f, 3f, 1f);
+        transform.localScale = new Vector3(2f, 4f, 1f);
         this.transform.parent = null;
         yield return new WaitForSeconds(0.5f);
         transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1f,1f,1f), 5f * Time.deltaTime);

@@ -31,7 +31,7 @@ public class Skill1_HellBullet : MonoBehaviour
         foreach (var i in firePoint)
         {
             GameObject bullet = Instantiate(bulletPrefab, i.transform.position, i.transform.rotation);
-            //bullet.GetComponent<BulletController>().damage = bossController.GetComponent<BossController>().dameSkill[0];
+            bullet.GetComponent<BulletController>().damage = bossController.GetComponent<BossController>().dameSkill[0];
         }
     }
 
@@ -41,7 +41,7 @@ public class Skill1_HellBullet : MonoBehaviour
 
         //transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles, to, -1f);
         //Debug.Log(transform.rotation.eulerAngles.z);
-        if (transform.rotation.eulerAngles.z <= 225f || transform.rotation.eulerAngles.z >= 305f)
+        if (transform.rotation.eulerAngles.z <= 180f || transform.rotation.eulerAngles.z >= 360f)
         {
             //to=new Vector3(0,0,225f+305f-transform.rotation.eulerAngles.z);
             rotationSpeed *= -1;
