@@ -7,5 +7,7 @@ public enum PlayerAction
     Heal,
     Hurt,
     PlaceBomb,
-    PlusBomb
+    PlusBomb,
+    Win, 
+    Lose
 }

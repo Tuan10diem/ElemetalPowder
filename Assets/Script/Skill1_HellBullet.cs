@@ -9,9 +9,7 @@ public class Skill1_HellBullet : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject bossController;
     public float timeBetweenShoots;
-    private Subjects _subjects;
     private float timer = 0;
-    public Vector3 to = new Vector3(0, 0, 225f); 
     public float rotationSpeed = 45f;
 
     private void Update()
@@ -31,21 +29,26 @@ public class Skill1_HellBullet : MonoBehaviour
         foreach (var i in firePoint)
         {
             GameObject bullet = Instantiate(bulletPrefab, i.transform.position, i.transform.rotation);
-            bullet.GetComponent<BulletController>().damage = bossController.GetComponent<BossController>().dameSkill[0];
+            bullet.GetComponent<BulletController>().damage = bossController.GetComponent<BossController>().listSkill[0].damage;
         }
     }
 
     private void Rotating()
     {
-        transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
-
-        //transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles, to, -1f);
-        //Debug.Log(transform.rotation.eulerAngles.z);
-        if (transform.rotation.eulerAngles.z <= 180f || transform.rotation.eulerAngles.z >= 360f)
+        for (int i = 0; i < firePoint.Count; i++)
         {
-            //to=new Vector3(0,0,225f+305f-transform.rotation.eulerAngles.z);
-            rotationSpeed *= -1;
+            firePoint[i].transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+            if (firePoint[i].transform.rotation.eulerAngles.z >= 340f)
+            {
+                if(rotationSpeed > 0) rotationSpeed = -rotationSpeed;
+            }
+            if (firePoint[i].transform.rotation.eulerAngles.z <= 200f)
+            {
+                if (rotationSpeed < 0) rotationSpeed = -rotationSpeed;
+            }
         }
+        
+        
         
     }
 

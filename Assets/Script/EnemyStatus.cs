@@ -9,10 +9,19 @@ public class EnemyStatus : Subjects
     public float speedInit;
     public int damage;
     public float attackSpeed;
-   
+
+    private void Update()
+    {
+        if (HP <= 0) 
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void HandleHurt(int dam)
     {
         HP -= dam;
+        GetComponent<EnemyMovement>().Flickering();
     }
     
 }

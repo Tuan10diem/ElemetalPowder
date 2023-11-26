@@ -397,6 +397,8 @@ MonoBehaviour:
   spriteRendererDown: {fileID: 7704599630056006870}
   spriteRendererLeft: {fileID: 1039770386620197257}
   spriteRendererRight: {fileID: 7704599629375334485}
+  flickerSpeed: 10
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &7704599629605850922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,7 +411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf0de222a2084847a2a54a1e694c4a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 2
+  HP: 5
   speedInit: 6
   damage: 1
   attackSpeed: 1.5

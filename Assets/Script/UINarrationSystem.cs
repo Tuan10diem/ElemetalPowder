@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UINarrationSystem : MonoBehaviour, IObserver
@@ -18,6 +19,10 @@ public class UINarrationSystem : MonoBehaviour, IObserver
     public int radiusInit;
     public int currentRadius;
     public Text radiusText;
+
+    public GameObject endGameInfo;
+    public Text statement;
+    public Image endBg;
 
     public Subjects _playerSubject;
     public PlayerStatus _playerStatus;
@@ -42,10 +47,43 @@ public class UINarrationSystem : MonoBehaviour, IObserver
             // { PlayerAction.HandleBomb, HandleHandleBomb },
             { PlayerAction.Heal, (n)=> HandleHeal(n)},
             { PlayerAction.PlaceBomb, (n) =>PlaceBomb(n)},
-            { PlayerAction.PlusBomb, (n) =>PlusBomb(n)}
+            { PlayerAction.PlusBomb, (n) =>PlusBomb(n)},
+            { PlayerAction.Win, (n) =>Win(n) },
+            { PlayerAction.Lose, (n) =>Lose(n) },
         };
     }
-    
+
+    public void ReloadSceneBtn()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void HomeBtn()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("HomeScene");
+    }
+
+    private void Win(float n)
+    {
+        Debug.Log("Win");
+        statement.text = "You Win";
+        statement.color = Color.white;
+        endGameInfo.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    private void Lose(float n)
+    {
+        Debug.Log("Lose");
+        statement.text = "You Lose";
+        statement.color = new Color(255f / 255f, 0f, 61f / 255f);
+        endGameInfo.SetActive(true);
+        Time.timeScale = 0f;
+
+    }
+
     public void OnNotify(PlayerAction action, float n)
     {
         if (_playerActionHandler.ContainsKey(action))

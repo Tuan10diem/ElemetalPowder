@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public struct SkillAnimated
+public class Skill
 {
     public AnimatedSpriteRenderer pre, casting, post;
+    public int damage;
+    public float time;
+    public GameObject skill;
 }
 
 public class BossController : Subjects
@@ -14,103 +17,80 @@ public class BossController : Subjects
     public int HP;
     public float restTime;
     public int currentAction;
-    public List<int> dameSkill;
-    public List<float> skillTime;
-    public List<bool> isCasting;
-    public List<GameObject> skillList;
     public bool isAngry = false;
-    public float timer = 0;
 
     private int currentHP;
-    private bool first = true;
 
-    [SerializeField]
-    public List<SkillAnimated>  listSpritesRendererSkill;
+    public List<Skill>  listSkill;
     public AnimatedSpriteRenderer spriteRendererIdle;
 
     // public AnimatedSpriteRenderer spriteRendererDeath;
-    private AnimatedSpriteRenderer activeSpriteRenderer;
 
     void Start()
     {
+        for (int i = 0; i < listSkill.Count; i++)
+        {
+            listSkill[i].pre.enabled = false;
+            listSkill[i].casting.enabled = false;
+            listSkill[i].post.enabled = false;
+            listSkill[i].skill.SetActive(false);
+        }
 
-
+        StartCoroutine(UseSkillsRoutine());
     }
 
-    void Update()
+    private IEnumerator UseSkillsRoutine()
     {
-        timer += Time.deltaTime;
-        Skill();
-        if (currentHP < HP / 2.0 && !isAngry)
+        while (true)
         {
-            AngryTime();
-            isAngry = true;
+            //rest
+            spriteRendererIdle.enabled = true;
+            yield return new WaitForSeconds(restTime);
+            spriteRendererIdle.enabled = false;
+
+            //pre
+            spriteRendererIdle.enabled = false;
+            listSkill[currentAction].pre.enabled = true;
+            yield return new WaitForSeconds(listSkill[currentAction].pre.animationTime);
+            listSkill[currentAction].pre.enabled = false;
+
+            //casting
+            listSkill[currentAction].casting.enabled = true;
+            listSkill[currentAction].skill.SetActive(true);
+            yield return new WaitForSeconds(listSkill[currentAction].time);
+            listSkill[currentAction].casting.enabled = false;
+            listSkill[currentAction].skill.SetActive(false);
+
+            //post
+            listSkill[currentAction].casting.enabled = false;
+            listSkill[currentAction].post.enabled = true;
+            yield return new WaitForSeconds(listSkill[currentAction].post.animationTime);
+            listSkill[currentAction].post.enabled = false;
+
+            NextAction();
         }
     }
 
-    protected void NextAction()
+    private void AngryTime()
     {
+        restTime = (restTime / 3) * 2;
+        for (int i = 0; i < listSkill.Count; i++)
+        {
+            listSkill[i].time *= 3 / 2;
+        }
+    }
 
+    private void NextAction()
+    {
         currentAction += 1;
-        if (currentAction >= skillTime.Count)
+        if (currentAction >= listSkill.Count)
         {
             currentAction = 0;
-        }
-
-        StartCoroutine(Rest(restTime));
-    }
-
-    public void Skill()
-    {
-        if (isCasting[currentAction] && timer < skillTime[currentAction])
-        {
-            listSpritesRendererSkill[currentAction].casting.enabled  = true;
-            skillList[currentAction].SetActive(true);
-            //NotifyObservers(BossAction.Skill1);
-        }
-        else
-        {
-            isCasting[currentAction] = false;
-            skillList[currentAction].SetActive(false);
-            timer = 0;
-            NextAction();
         }
     }
 
     public void HandleHurt(int damage)
     {
         currentHP -= damage;
-    }
-
-    private IEnumerator Rest(float restTime)
-    {
-        listSpritesRendererSkill[(currentAction==0)? (skillList.Count-1):(currentAction-1)].post.enabled = true;
-        listSpritesRendererSkill[(currentAction == 0) ? (skillList.Count - 1) : (currentAction - 1)].casting.enabled = false;
-        listSpritesRendererSkill[(currentAction == 0) ? (skillList.Count - 1) : (currentAction - 1)].pre.enabled = false;
-
-        yield return new WaitForSeconds(0.25f);
-
-        listSpritesRendererSkill[(currentAction == 0) ? (skillList.Count - 1) : (currentAction - 1)].post.enabled = false;
-        spriteRendererIdle.enabled = true;
-
-        yield return new WaitForSeconds(restTime - 0.5f);
-
-        spriteRendererIdle.enabled = false;
-        timer = 0;
-        listSpritesRendererSkill[currentAction].pre.enabled = true;
-
-        yield return new WaitForSeconds(0.25f);
-
-        listSpritesRendererSkill[currentAction].pre.enabled = false;
-        isCasting[currentAction] = true;
-    }
-
-    private void AngryTime()
-    {
-        restTime = (restTime / 3)*2;
-        for(int i=0;i<skillTime.Count;i++)
-        {
-            skillTime[i] *= 3 / 2;
-        }
     }
 }

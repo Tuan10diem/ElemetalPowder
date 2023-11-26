@@ -51,6 +51,11 @@ public class PlayerStatus : Subjects
         SpeedIncrease();
         HandleShield();
         HandleBlastRadius();
+
+        if (HP <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void AddItemTime(int time, Item item)

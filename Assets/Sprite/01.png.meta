@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 884eaa97219b0a145bf937e0fd922841
+guid: b185260cd290aa44a8c169b5fe15e48d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,97 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Flip Red Effect Bullet Impact Explosion 32x32_0
+      name: 01_0
       rect:
         serializedVersion: 2
-        x: 160
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 13f7cce8d8153114d957f1faecbfb3d8
-      internalID: 1185864967
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flip Red Effect Bullet Impact Explosion 32x32_1
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 918a88cb31caba14184f6bb002555b3d
-      internalID: -1438440077
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flip Red Effect Bullet Impact Explosion 32x32_2
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 412fb97941ac160429528079a64c3b21
-      internalID: -2026578896
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flip Red Effect Bullet Impact Explosion 32x32_3
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 15852329b46228346829c405874e254f
-      internalID: 1066384384
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Flip Red Effect Bullet Impact Explosion 32x32_4
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 256
-        width: 32
-        height: 32
+        x: 7
+        y: 135
+        width: 50
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6790418c2e90f1047acd36d3b56bb3fd
-      internalID: -2029999724
+      spriteID: 757070ee3e43e67429a49fc227381a0b
+      internalID: -1376506432
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flip Red Effect Bullet Impact Explosion 32x32_5
+      name: 01_1
       rect:
         serializedVersion: 2
-        x: 192
-        y: 256
-        width: 32
-        height: 32
+        x: 70
+        y: 135
+        width: 50
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb2a4750042ef8847a1c828a643d41d2
-      internalID: -1707042698
+      spriteID: ca372dae3e2bc504ea7e22b7a7df98be
+      internalID: -1857246173
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flip Red Effect Bullet Impact Explosion 32x32_6
+      name: 01_2
       rect:
         serializedVersion: 2
-        x: 224
-        y: 257
-        width: 32
-        height: 31
+        x: 135
+        y: 135
+        width: 50
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dca979c2f802ffc4c850743f7861afa3
-      internalID: -1939490371
+      spriteID: 804c758ec025e244aae5cb951456f0fb
+      internalID: -377298713
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flip Red Effect Bullet Impact Explosion 32x32_7
+      name: 01_3
       rect:
         serializedVersion: 2
-        x: 256
-        y: 257
-        width: 32
-        height: 31
+        x: 199
+        y: 135
+        width: 50
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,8 +194,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 746fab4579e72ee41aa408a1541614b3
-      internalID: 610958172
+      spriteID: f33efded24c314642920b875172b7ded
+      internalID: -303565422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 01_4
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 135
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5010110db42b142488a2e7b1734a03ac
+      internalID: -1731114955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 01_5
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 134
+        width: 51
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0545ac6f9bd187a41a45c8d4be704ab8
+      internalID: -1774943793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 01_6
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 134
+        width: 51
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c8a16f286eb432409ca28e2576e17a0
+      internalID: -2098096062
       vertices: []
       indices: 
       edges: []
@@ -295,14 +274,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Flip Red Effect Bullet Impact Explosion 32x32_0: 1185864967
-      Flip Red Effect Bullet Impact Explosion 32x32_1: -1438440077
-      Flip Red Effect Bullet Impact Explosion 32x32_2: -2026578896
-      Flip Red Effect Bullet Impact Explosion 32x32_3: 1066384384
-      Flip Red Effect Bullet Impact Explosion 32x32_4: -2029999724
-      Flip Red Effect Bullet Impact Explosion 32x32_5: -1707042698
-      Flip Red Effect Bullet Impact Explosion 32x32_6: -1939490371
-      Flip Red Effect Bullet Impact Explosion 32x32_7: 610958172
+      01_0: -1376506432
+      01_1: -1857246173
+      01_2: -377298713
+      01_3: -303565422
+      01_4: -1731114955
+      01_5: -1774943793
+      01_6: -2098096062
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

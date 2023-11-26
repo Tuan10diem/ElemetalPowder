@@ -68,6 +68,9 @@ TagManager:
   - name: Boss
     uniqueID: 3486792929
     locked: 0
+  - name: Bullet
+    uniqueID: 2724451789
+    locked: 0
   - name: test
     uniqueID: 2042154509
     locked: 0

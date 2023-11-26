@@ -34,6 +34,12 @@ public class EnemyMovement : MonoBehaviour
     // public AnimatedSpriteRenderer spriteRendererDeath;
     private AnimatedSpriteRenderer activeSpriteRenderer;
 
+    [Header("Flicker")]
+    public float flickerSpeed = 10f;
+    public Color damageColor = Color.red;
+    private Color originalColor;
+    private bool isFlickering = false;
+
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -41,6 +47,8 @@ public class EnemyMovement : MonoBehaviour
         activeSpriteRenderer = spriteRendererDown;
 
         speed = GetComponent<EnemyStatus>().speedInit;
+
+        originalColor = Color.white;
 
     }
 
@@ -158,6 +166,50 @@ public class EnemyMovement : MonoBehaviour
         activeSpriteRenderer = spriteRenderer;
         activeSpriteRenderer.idle = direction == Vector2.zero;
     }
-    
+
+    public void Flickering()
+    {
+        if (!isFlickering)
+        {
+            // Start the flickering coroutine
+            StartCoroutine(FlickerCoroutine());
+        }
+    }
+
+    private IEnumerator FlickerCoroutine()
+    {
+        isFlickering = true;
+
+        SpriteRenderer objectRenderer1 = spriteRendererUp.GetComponent<SpriteRenderer>();
+        SpriteRenderer objectRenderer2 = spriteRendererDown.GetComponent<SpriteRenderer>();
+        SpriteRenderer objectRenderer3 = spriteRendererLeft.GetComponent<SpriteRenderer>();
+        SpriteRenderer objectRenderer4 = spriteRendererRight.GetComponent<SpriteRenderer>();
+
+        for (int i = 0; i < 5; i++)
+        {
+            objectRenderer1.color = (objectRenderer1.color == originalColor) ? damageColor : originalColor;
+            objectRenderer2.color = (objectRenderer2.color == originalColor) ? damageColor : originalColor;
+            objectRenderer3.color = (objectRenderer3.color == originalColor) ? damageColor : originalColor;
+            objectRenderer4.color = (objectRenderer4.color == originalColor) ? damageColor : originalColor;
+
+            yield return new WaitForSeconds(1f / flickerSpeed);
+
+            objectRenderer1.color = (objectRenderer1.color == originalColor) ? damageColor : originalColor;
+            objectRenderer2.color = (objectRenderer2.color == originalColor) ? damageColor : originalColor;
+            objectRenderer3.color = (objectRenderer3.color == originalColor) ? damageColor : originalColor;
+            objectRenderer4.color = (objectRenderer4.color == originalColor) ? damageColor : originalColor;
+
+            yield return new WaitForSeconds(1f / flickerSpeed);
+
+        }
+
+        objectRenderer1.color = originalColor;
+        objectRenderer2.color = originalColor;
+        objectRenderer3.color = originalColor;
+        objectRenderer4.color = originalColor;
+
+        isFlickering = false;
+    }
+
 }
 
