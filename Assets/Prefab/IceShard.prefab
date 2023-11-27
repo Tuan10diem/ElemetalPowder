@@ -126,3 +126,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   damage: 1
+  needToDestroy: 1
+  explodingPrefab: {fileID: 7853119218337303457, guid: adbce38a6ff1f794bb5f2e061229c44d, type: 3}

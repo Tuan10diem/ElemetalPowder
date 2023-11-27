@@ -587,7 +587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  rotationSpeed: 4
+  rotationSpeed: 3
   finalSpark: {fileID: 6772592531068371921, guid: 5c1e683437bcc274b9b7f4d114749739, type: 3}
   bossController: {fileID: 6133540294418174241}
 --- !u!1 &6133540295339663721

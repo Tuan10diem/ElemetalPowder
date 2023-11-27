@@ -13,6 +13,7 @@ public class MapCoordinates : MonoBehaviour
     public Tilemap groundMap;
     public Tilemap destructibleMap;
     public Tilemap indestructibleMap;
+    public TileBase destructibleBox;
     public int numberOfPos;
     public int timeBetweenTileChange;
 
@@ -38,7 +39,14 @@ public class MapCoordinates : MonoBehaviour
 
                 Vector3 worldPosition = groundMap.GetCellCenterWorld(randomGroundPosition);
 
-                Instantiate(obstacle, worldPosition, Quaternion.identity);
+                if (UnityEngine.Random.Range(0, 10) < 3)
+                {
+                    Instantiate(obstacle, worldPosition, Quaternion.identity);
+                }
+                else
+                {
+                    destructibleMap.SetTile(new Vector3Int((int)worldPosition.x, (int)worldPosition.y, (int)worldPosition.z), destructibleBox);
+                }
             }
         }
     }

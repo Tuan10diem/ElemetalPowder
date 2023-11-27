@@ -19,7 +19,7 @@ public class BossController : Subjects
     public int currentAction;
     public bool isAngry = false;
 
-    private int currentHP;
+    public int currentHP;
 
     public List<Skill>  listSkill;
     public AnimatedSpriteRenderer spriteRendererIdle;
@@ -28,6 +28,7 @@ public class BossController : Subjects
 
     void Start()
     {
+        currentHP = HP;
         for (int i = 0; i < listSkill.Count; i++)
         {
             listSkill[i].pre.enabled = false;
@@ -37,6 +38,13 @@ public class BossController : Subjects
         }
 
         StartCoroutine(UseSkillsRoutine());
+    }
+    private void Update()
+    {
+        if (currentHP < 0)
+        {
+            NotifyObservers(PlayerAction.Win, 0);
+        }
     }
 
     private IEnumerator UseSkillsRoutine()
@@ -92,5 +100,6 @@ public class BossController : Subjects
     public void HandleHurt(int damage)
     {
         currentHP -= damage;
+        
     }
 }

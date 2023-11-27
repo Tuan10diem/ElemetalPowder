@@ -65,6 +65,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   damage: 1
+  needToDestroy: 1
+  explodingPrefab: {fileID: 7853119218337303457, guid: adbce38a6ff1f794bb5f2e061229c44d, type: 3}
 --- !u!212 &2041226180394838194
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -2,22 +2,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class BulletController : MonoBehaviour
 {
 
     public float speed;
     public int damage;
+    public bool needToDestroy;
+    private Tilemap destructibles;
+    public GameObject explodingPrefab;
 
     private void Start()
     {
-        Destroy(gameObject,10f);
+        destructibles = GameObject.Find("Destructible").GetComponent<Tilemap>();
+        if(needToDestroy) Destroy(gameObject,10f);
     }
 
     // Update is called once per frame
     void Update()
     {
         BulletMovement();
+        ClearDestructible(new Vector2((int) this.transform.position.x, (int)this.transform.position.y));
     }
 
     private void BulletMovement()
@@ -37,6 +43,19 @@ public class BulletController : MonoBehaviour
         {
             other.GetComponent<BossController>().HandleHurt(damage);
         }
-        Destroy(gameObject);
+        if (needToDestroy) Destroy(gameObject);
+    }
+
+    private void ClearDestructible(Vector2 position)
+    {
+        Vector3Int cellPos = destructibles.WorldToCell(position);
+        TileBase cell = destructibles.GetTile(cellPos);
+
+        if (cell != null)
+        {
+            Instantiate(explodingPrefab, position, Quaternion.identity);
+            destructibles.SetTile(cellPos, null);
+            if (needToDestroy) Destroy(this.gameObject);
+        }
     }
 }

@@ -54,7 +54,8 @@ public class PlayerStatus : Subjects
 
         if (HP <= 0)
         {
-            Destroy(gameObject);
+            NotifyObservers(PlayerAction.Lose, 0);
+            this.gameObject.SetActive(false) ;
         }
     }
 

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class ArcOfEnergy : BulletController
 {
+
+    private void Start()
+    {
+        Destroy(gameObject,15f);
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other == null || other.CompareTag("Player")) return;

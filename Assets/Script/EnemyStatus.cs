@@ -14,7 +14,7 @@ public class EnemyStatus : Subjects
     {
         if (HP <= 0) 
         {
-            Destroy(gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 

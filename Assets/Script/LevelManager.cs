@@ -2,45 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : Subjects
 {
 
     public List<GameObject> enemyList;
-    public List<GameObject> playerList;
+    
+
+    public CircleCollider2D collider2D;
+    public AnimatedSpriteRenderer spriteRenderer;
+
+    private void Start()
+    {
+        InvokeRepeating("CheckState", 0f, 0.1f) ;
+    }
 
     // Update is called once per frame
-    void Update()
+    private void CheckState()
     {
-        bool enemyRemaining = false;
-        bool playerRemaining = false;
+        bool isWin = true;
+        Debug.Log("running" + isWin.ToString());
         for (int i = 0; i < enemyList.Count; i++)
         {
-            if (enemyList[i]) 
-            { 
-                enemyRemaining = true;
-                break;
+            Debug.Log(enemyList[i].activeSelf);
+            if (enemyList[i].activeSelf)
+            {
+                isWin = false;
             }
         }
-        for(int i = 0;i < playerList.Count; i++)
+        if(isWin)
         {
-            if (playerList[i]) 
-            { 
-                playerRemaining = true; 
-                break;
-            }
-        }
-        if(!enemyRemaining && playerRemaining)
-        {
+            Debug.Log("Win");
+            collider2D.enabled = true;
+            spriteRenderer.enabled = true;
             NotifyObservers(PlayerAction.Win, 0);
-            enemyList.Clear();
-            playerList.Clear();
         }
-        if(!playerRemaining && enemyRemaining)
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision) return;
+        if (collision.CompareTag("Player") )
         {
-            NotifyObservers(PlayerAction.Lose, 0);
-            enemyList.Clear();
-            playerList.Clear();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

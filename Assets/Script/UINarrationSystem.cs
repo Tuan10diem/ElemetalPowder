@@ -67,6 +67,7 @@ public class UINarrationSystem : MonoBehaviour, IObserver
 
     private void Win(float n)
     {
+        if (!endGameInfo) return;
         Debug.Log("Win");
         statement.text = "You Win";
         statement.color = Color.white;
@@ -76,6 +77,7 @@ public class UINarrationSystem : MonoBehaviour, IObserver
 
     private void Lose(float n)
     {
+        if (!endGameInfo) return;
         Debug.Log("Lose");
         statement.text = "You Lose";
         statement.color = new Color(255f / 255f, 0f, 61f / 255f);
