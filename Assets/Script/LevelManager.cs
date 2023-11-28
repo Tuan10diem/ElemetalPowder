@@ -19,7 +19,7 @@ public class LevelManager : Subjects
     private IEnumerator LoadScene()
     {
         Time.timeScale = 0.0f;
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(0.5f);
         Time.timeScale = 1.0f;
     }
 

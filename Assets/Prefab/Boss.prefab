@@ -377,6 +377,7 @@ MonoBehaviour:
   restTime: 3
   currentAction: 0
   isAngry: 0
+  currentHP: 0
   listSkill:
   - pre: {fileID: 6133540295339663719}
     casting: {fileID: 6133540293971297489}
@@ -387,7 +388,7 @@ MonoBehaviour:
   - pre: {fileID: 6133540295909569200}
     casting: {fileID: 6133540295734780893}
     post: {fileID: 6133540294173117162}
-    damage: 10
+    damage: 4
     time: 10
     skill: {fileID: 6133540295169251665}
   spriteRendererIdle: {fileID: 6133540295377666287}
