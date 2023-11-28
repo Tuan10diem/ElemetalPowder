@@ -23,7 +23,7 @@ public class BulletController : MonoBehaviour
     void Update()
     {
         BulletMovement();
-        ClearDestructible(new Vector2((int) this.transform.position.x, (int)this.transform.position.y));
+        if(destructibles) ClearDestructible(new Vector2((int) this.transform.position.x, (int)this.transform.position.y));
     }
 
     private void BulletMovement()

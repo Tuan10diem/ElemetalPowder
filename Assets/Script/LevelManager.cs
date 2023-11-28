@@ -8,10 +8,20 @@ public class LevelManager : Subjects
 {
 
     public List<GameObject> enemyList;
-    
-
-    public CircleCollider2D collider2D;
+    public new CircleCollider2D collider2D;
     public AnimatedSpriteRenderer spriteRenderer;
+
+    private void Awake()
+    {
+        StartCoroutine(LoadScene());
+    }
+
+    private IEnumerator LoadScene()
+    {
+        Time.timeScale = 0.0f;
+        yield return new WaitForSecondsRealtime(0.2f);
+        Time.timeScale = 1.0f;
+    }
 
     private void Start()
     {
@@ -33,10 +43,9 @@ public class LevelManager : Subjects
         }
         if(isWin)
         {
-            Debug.Log("Win");
+            NotifyObservers(PlayerAction.Win, 0);
             collider2D.enabled = true;
             spriteRenderer.enabled = true;
-            NotifyObservers(PlayerAction.Win, 0);
         }
     }
 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7795347623740821137}
   - component: {fileID: 7795347623740821143}
   - component: {fileID: 608282884971627972}
+  - component: {fileID: 7689699313465749390}
   m_Layer: 0
   m_Name: ArcOfEnergy
   m_TagString: Untagged
@@ -147,6 +148,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  damage: 10
+  damage: 5
   needToDestroy: 0
   explodingPrefab: {fileID: 7853119218337303457, guid: adbce38a6ff1f794bb5f2e061229c44d, type: 3}
+--- !u!50 &7689699313465749390
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795347623740821132}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

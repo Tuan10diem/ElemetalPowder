@@ -41,9 +41,9 @@ public class BossController : Subjects
     }
     private void Update()
     {
-        if (currentHP < 0)
+        if (currentHP <= 0)
         {
-            NotifyObservers(PlayerAction.Win, 0);
+            this.gameObject.SetActive(false);
         }
     }
 
@@ -100,6 +100,7 @@ public class BossController : Subjects
     public void HandleHurt(int damage)
     {
         currentHP -= damage;
-        
+        Debug.Log(currentHP.ToString());
+        NotifyObservers(BossAction.Hurt,damage);
     }
 }

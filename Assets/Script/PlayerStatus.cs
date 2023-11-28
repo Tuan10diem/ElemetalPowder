@@ -52,6 +52,7 @@ public class PlayerStatus : Subjects
         HandleShield();
         HandleBlastRadius();
 
+        HandleHeal(2);
         if (HP <= 0)
         {
             NotifyObservers(PlayerAction.Lose, 0);
@@ -103,8 +104,12 @@ public class PlayerStatus : Subjects
 
     public void HandleHeal(int HP)
     {
-        this.HP = Mathf.Min(this.HP+HP, maxHP);
-        NotifyObservers(PlayerAction.Heal,HP);
+        if (numberOfItem[Item.Heal] > 0)
+        {
+            this.HP = Mathf.Min(this.HP + HP, maxHP);
+            NotifyObservers(PlayerAction.Heal, HP);
+            numberOfItem[Item.Heal]--;
+        }
     }
 
     public void HandleShield()

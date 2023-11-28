@@ -7,11 +7,18 @@ using UnityEngine.UI;
 
 public class UINarrationSystem : MonoBehaviour, IObserver
 {
-
+    [Header ("Player")]
     public Image healthBar;
     public int healthAmount=10;
     public int currentHealth;
+    public bool isWin = false;
 
+    [Header("Boss")]
+    public Image bossHealthBar;
+    public int bossHealthAmount = 10;
+    public int bossCurrentHealth;
+
+    [Header("Bomb")]
     public int bombAmount;
     public int currentBomb;
     public Text bombNumber;
@@ -20,15 +27,20 @@ public class UINarrationSystem : MonoBehaviour, IObserver
     public int currentRadius;
     public Text radiusText;
 
+    [Header("UI endgame")]
     public GameObject endGameInfo;
     public Text statement;
     public Image endBg;
 
+    [Header("References")]
     public Subjects _playerSubject;
     public PlayerStatus _playerStatus;
-    
+    public Subjects _levelManager;
+    public Subjects _bossController;
+
     private Dictionary<PlayerAction, System.Action<float>> _playerActionHandler;
-    
+    private Dictionary<BossAction, System.Action<float>> _bossActionHandler;
+
     private void Awake()
     {
         bombNumber.text = currentBomb.ToString();
@@ -48,8 +60,14 @@ public class UINarrationSystem : MonoBehaviour, IObserver
             { PlayerAction.Heal, (n)=> HandleHeal(n)},
             { PlayerAction.PlaceBomb, (n) =>PlaceBomb(n)},
             { PlayerAction.PlusBomb, (n) =>PlusBomb(n)},
-            { PlayerAction.Win, (n) =>Win(n) },
-            { PlayerAction.Lose, (n) =>Lose(n) },
+            { PlayerAction.Win, (n) => Win(n) },
+            { PlayerAction.Lose, (n) => Lose(n) },
+        };
+
+        _bossActionHandler = new Dictionary<BossAction, Action<float>>()
+        {
+            { BossAction.Hurt,(n) => BossHandleHurt(n) },
+            //{ BossAction.Angry,(n)=>  }
         };
     }
 
@@ -65,9 +83,16 @@ public class UINarrationSystem : MonoBehaviour, IObserver
         SceneManager.LoadScene("HomeScene");
     }
 
+    public void LoadNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+    }
+
     private void Win(float n)
     {
+        Debug.Log("before");
         if (!endGameInfo) return;
+        if (!isWin) return;
         Debug.Log("Win");
         statement.text = "You Win";
         statement.color = Color.white;
@@ -96,6 +121,10 @@ public class UINarrationSystem : MonoBehaviour, IObserver
     
     public void OnNotify(BossAction action, float n)
     {
+        if (_bossActionHandler.ContainsKey(action))
+        {
+            _bossActionHandler[action](n);
+        }
     }
 
     private void HandleHurt(float n)
@@ -104,6 +133,14 @@ public class UINarrationSystem : MonoBehaviour, IObserver
         if (healthAmount!=0) healthBar.fillAmount = currentHealth/ ((float)1.0 * healthAmount);
 
         Debug.Log("- mau o thanh HP ne");
+    }
+
+    private void BossHandleHurt(float n)
+    {
+        bossCurrentHealth -= (int)n;
+        if (bossHealthAmount != 0) bossHealthBar.fillAmount = bossCurrentHealth / ((float)1.0 * bossHealthAmount);
+
+        Debug.Log("- mau boss");
     }
 
     private void HandleHeal(float n)
@@ -144,10 +181,14 @@ public class UINarrationSystem : MonoBehaviour, IObserver
     private void OnEnable()
     {
         _playerSubject.AddObservoer(this);
+        _levelManager.AddObservoer(this);
+        _bossController.AddObservoer(this);
     }
 
     private void OnDisable()
     {
         _playerSubject.RemoveObserver(this);
+        _levelManager.RemoveObserver(this);
+        _bossController.RemoveObserver(this);   
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2778374139294389018}
   - component: {fileID: 4714488988329011475}
   m_Layer: 0
-  m_Name: Exploding
+  m_Name: NormalExploding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,12 +51,6 @@ MonoBehaviour:
   - {fileID: 8751901073442993718, guid: 8d0cddc15e4ec1b4fbc5e426166dcd66, type: 3}
   - {fileID: 6453191680852851589, guid: 4758a30baa7202b4a816e7e641c48b3c, type: 3}
   - {fileID: 4849509706019975696, guid: 91af67b73ceef0045af9e44ae725490d, type: 3}
-  - {fileID: 7490755616217823866, guid: eb4b06414f764f04786f767116d7a209, type: 3}
-  - {fileID: 7490755616217823866, guid: eb4b06414f764f04786f767116d7a209, type: 3}
-  - {fileID: 7490755616217823866, guid: eb4b06414f764f04786f767116d7a209, type: 3}
-  - {fileID: -8107382105354671051, guid: 39b494ee52fa2c246b581ba541cdf0bb, type: 3}
-  - {fileID: -8107382105354671051, guid: 39b494ee52fa2c246b581ba541cdf0bb, type: 3}
-  - {fileID: -8107382105354671051, guid: 39b494ee52fa2c246b581ba541cdf0bb, type: 3}
 --- !u!212 &2778374139294389018
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ public class FinalSpark : MonoBehaviour
 
     public int damage;
     public float countDown;
-    public Collider2D collider2D;
+    public new Collider2D collider2D;
 
     // Start is called before the first frame update
     private void Start()
